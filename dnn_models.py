@@ -29,4 +29,27 @@ def get_model(model_tag, input_dim):
                     loss='binary_crossentropy',
                     metrics=['accuracy'])
         
-    return model
+        return model
+
+    if model_tag == "model_adam":
+        model.add(Dense(30, input_dim=input_dim, activation="relu", kernel_regularizer=regularizers.l2(0.01)))
+        model.add(BatchNormalization())
+        model.add(Dropout(0.1))
+
+        model.add(Dense(50, kernel_regularizer=regularizers.l2(0.01)))
+        model.add(BatchNormalization())
+        model.add(Activation("relu"))
+        model.add(Dropout(0.1))
+        
+        model.add(Dense(30))
+        model.add(BatchNormalization())
+        model.add(Activation("relu"))
+        model.add(Dropout(0.1))
+        
+        model.add(Dense(1, activation="sigmoid"))
+
+        model.compile(optimizer='adam',
+                    loss='binary_crossentropy',
+                    metrics=['accuracy'])
+        
+        return model
