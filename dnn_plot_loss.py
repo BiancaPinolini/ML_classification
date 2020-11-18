@@ -63,8 +63,10 @@ class PlotLosses(keras.callbacks.Callback):
         self.x.append(self.i)
         self.losses.append(logs.get('loss')) #training_loss[0])
         self.val_losses.append(logs.get('val_loss'))
-        self.acc.append(logs.get('acc')) #training_loss[1])
-        self.val_acc.append(logs.get('val_acc'))
+        # 'acc' and 'val_acc' work in "96 python3" in swan.cern.ch
+        self.acc.append(logs.get('accuracy')) #training_loss[1])
+        self.val_acc.append(logs.get('val_accuracy'))
+        # in newer keras these may be 'accuracy' and 'val_accuracy'
         self.i += 1
 
         self.pred_test_temp = self.model.predict(self.X_test, batch_size=4096)
