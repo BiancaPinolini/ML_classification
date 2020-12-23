@@ -18,34 +18,38 @@ def get_model(model_tag, input_dim):
         model.add(Dense(1, activation="sigmoid"))
         return model
 
-    if model_tag == "2l_50n_batchnorm_relu":
+    if model_tag == "3l_50n_batchnorm_relu":
         model.add(Dense(50, input_dim=input_dim, activation="relu"))
         model.add(BatchNormalization())
         
         model.add(Dense(50, activation="relu"))    
-        model.add(BatchNormalization())   
+        model.add(BatchNormalization())
+        
+        model.add(Dense(50, activation="relu"))    
+        model.add(BatchNormalization())        
         
         model.add(Dense(1, activation="sigmoid"))
         return model
     
-    if model_tag == "2l_50n_l2_batchnorm_relu":
-        model.add(Dense(50, input_dim=input_dim, activation="relu",kernel_regularizer=regularizers.l2(0.01)))
+    if model_tag == "3l_150n_l2_batchnorm_relu":
+        model.add(Dense(150, input_dim=input_dim, activation="relu",kernel_regularizer=regularizers.l2(0.01)))
         model.add(BatchNormalization())
  
-        model.add(Dense(50, activation="relu",kernel_regularizer=regularizers.l2(0.01)))    
-        model.add(BatchNormalization())               
+        model.add(Dense(150, activation="relu",kernel_regularizer=regularizers.l2(0.01)))    
+        model.add(BatchNormalization())   
+        
+        model.add(Dense(150, activation="relu",kernel_regularizer=regularizers.l2(0.01)))    
+        model.add(BatchNormalization())   
         
         model.add(Dense(1, activation="sigmoid"))
         return model
 
-    if model_tag == "2l_150n_dropout005_l2_batchnorm_relu":
+    if model_tag == "2l_150n_l2_batchnorm_relu":
         model.add(Dense(150, input_dim=input_dim, activation="relu",kernel_regularizer=regularizers.l2(0.01)))
         model.add(BatchNormalization())
-        model.add(Dropout(0.05))
         
         model.add(Dense(150, activation="relu",kernel_regularizer=regularizers.l2(0.01)))    
-        model.add(BatchNormalization())   
-        model.add(Dropout(0.05))
+        model.add(BatchNormalization())  
         
         model.add(Dense(1, activation="sigmoid"))
         return model
