@@ -54,22 +54,18 @@ def get_model(model_tag, input_dim):
         model.add(Dense(1, activation="sigmoid"))
         return model
     
-    if model_tag == "4l_50n_dropout01_l2_batchnorm_relu":
-        model.add(Dense(50, input_dim=input_dim, activation="relu",kernel_regularizer=regularizers.l2(0.01)))
+    if model_tag == "3l_150n_dropout01_l2_batchnorm_relu":
+        model.add(Dense(150, input_dim=input_dim, activation="relu",kernel_regularizer=regularizers.l2(0.01)))
         model.add(BatchNormalization())
         model.add(Dropout(0.1))
         
-        model.add(Dense(50, activation="relu",kernel_regularizer=regularizers.l2(0.01)))    
+        model.add(Dense(150, activation="relu",kernel_regularizer=regularizers.l2(0.01)))    
         model.add(BatchNormalization())   
-        model.add(Dropout(0.1))
+        model.add(Dropout(0.1)) 
         
-        model.add(Dense(50, activation="relu",kernel_regularizer=regularizers.l2(0.01)))    
+        model.add(Dense(150, activation="relu",kernel_regularizer=regularizers.l2(0.01)))    
         model.add(BatchNormalization())   
-        model.add(Dropout(0.1))   
-        
-        model.add(Dense(50, activation="relu",kernel_regularizer=regularizers.l2(0.01)))    
-        model.add(BatchNormalization())   
-        model.add(Dropout(0.1))          
+        model.add(Dropout(0.1))             
         
         model.add(Dense(1, activation="sigmoid"))
         return model
