@@ -49,6 +49,8 @@ class PlotLosses(keras.callbacks.Callback):
         self.recall_train = []
         self.pred_train_temp=[]
         self.pred_test_temp=[]
+        self.f1_test = []
+        self.f1_train = []
         self.figure = None
         
         self.logs = []
@@ -111,6 +113,9 @@ class PlotLosses(keras.callbacks.Callback):
         self.precision_train.append(TP_train/ (TP_train+FP_train))
         self.recall_test.append(TP_test/ T_test)
         self.recall_train.append(TP_train/ T_train)
+        
+        self.f1_train.append( 2* (self.precision_train[-1] * self.recall_train[-1])/ (self.precision_train[-1] + self.recall_train[-1]) )
+        self.f1_test.append( 2* (self.precision_test[-1] * self.recall_test[-1])/ (self.precision_test[-1] + self.recall_test[-1]) )
 
     def performance_plot(self):
         self.figure, ((ax1, ax2, ax3), (ax4, ax5, ax6)) = plt.subplots(2, 3, figsize=(24,10))
@@ -122,8 +127,8 @@ class PlotLosses(keras.callbacks.Callback):
         ax1.set_xlabel("epochs")
         ax1.legend()
 
-        ax2.plot(self.x, self.acc, "o-", label="accuracy (train)")
-        ax2.plot(self.x, self.val_acc, "o-", label="accuracy (val)")
+        ax2.plot(self.x, self.f1_train, "o-", label="F1 score (train) thr0.85")
+        ax2.plot(self.x, self.f1_test, "o-", label="F1 score (test) thr0.85")
         ax2.set_xlabel("epochs")
         ax2.legend()
         
