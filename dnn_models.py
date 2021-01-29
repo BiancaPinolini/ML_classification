@@ -14,28 +14,24 @@ def get_model(model_tag, input_dim):
         model.add(Dense(1, activation="sigmoid"))
         return model
     
-    if model_tag == "3l_128n_batchnorm_relu":
-        model.add(Dense(128, input_dim=input_dim))
+    if model_tag == "2l_64n_batchnorm_relu":
+        model.add(Dense(64, input_dim=input_dim))
         model.add(BatchNormalization())
         model.add(Activation("relu"))
         
         model.add(Dense(64))    
         model.add(BatchNormalization())  
         model.add(Activation("relu"))
-        
-        model.add(Dense(64))    
-        model.add(BatchNormalization())  
-        model.add(Activation("relu"))  
         
         model.add(Dense(1, activation="sigmoid"))
         return model
     
-    if model_tag == "2l_32n_l2_batchnorm_relu":
-        model.add(Dense(32, input_dim=input_dim, kernel_regularizer=regularizers.l2(0.03)))
+    if model_tag == "2l_64n_l2_batchnorm_relu":
+        model.add(Dense(64, input_dim=input_dim, kernel_regularizer=regularizers.l2(0.1)))
         model.add(BatchNormalization())
         model.add(Activation("relu"))
         
-        model.add(Dense(32, kernel_regularizer=regularizers.l2(0.03)))
+        model.add(Dense(64, kernel_regularizer=regularizers.l2(0.1)))
         model.add(BatchNormalization())
         model.add(Activation("relu"))
         
