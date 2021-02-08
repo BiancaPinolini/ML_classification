@@ -26,41 +26,17 @@ def get_model(model_tag, input_dim):
         model.add(Dense(1, activation="sigmoid"))
         return model
     
-    if model_tag == "2l_64n_l2_batchnorm_relu":
-        model.add(Dense(64, input_dim=input_dim, kernel_regularizer=regularizers.l2(0.1)))
+    if model_tag == "2l_32n_l2_05_batchnorm_relu":
+        model.add(Dense(32, input_dim=input_dim, kernel_regularizer=regularizers.l2(0.05)))
         model.add(BatchNormalization())
         model.add(Activation("relu"))
         
-        model.add(Dense(64, kernel_regularizer=regularizers.l2(0.1)))
+        model.add(Dense(32, kernel_regularizer=regularizers.l2(0.05)))
         model.add(BatchNormalization())
         model.add(Activation("relu"))
         
         model.add(Dense(1, activation="sigmoid"))
         return model
-
-    if model_tag == "5l_64n_l2_batchnorm_relu":
-        model.add(Dense(64, input_dim=input_dim, kernel_regularizer=regularizers.l2(0.1)))
-        model.add(BatchNormalization())
-        model.add(Activation("relu"))
-        
-        model.add(Dense(64, input_dim=input_dim, kernel_regularizer=regularizers.l2(0.1)))
-        model.add(BatchNormalization())
-        model.add(Activation("relu"))
-        
-        model.add(Dense(64, input_dim=input_dim, kernel_regularizer=regularizers.l2(0.1)))
-        model.add(BatchNormalization())
-        model.add(Activation("relu"))
-        
-        model.add(Dense(32, input_dim=input_dim))
-        model.add(BatchNormalization())
-        model.add(Activation("relu"))
-        
-        model.add(Dense(32, input_dim=input_dim))
-        model.add(BatchNormalization())
-        model.add(Activation("relu"))
-        
-        model.add(Dense(1, activation="sigmoid"))
-        return model    
     
     if model_tag == "2l_30n_dropout5_l2_batchnorm_relu":
         model.add(Dense(30, input_dim=input_dim, activation="relu",kernel_regularizer=regularizers.l2(0.01)))
