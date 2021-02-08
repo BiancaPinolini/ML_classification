@@ -1,4 +1,4 @@
-DataPreparation - To prepare the data for the training, along with and further selections and balancing
+DataPreparation - To prepare the data for the training, along with further selections and balancing
 
 Training - To train and save the model
 
